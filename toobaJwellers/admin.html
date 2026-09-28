@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tooba Jewellers - Admin Management Portal</title>
+  <link rel="stylesheet" href="css/admin.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👑</text></svg>" />
+</head>
+<body class="admin-body">
+
+  <!-- Admin Sidebar -->
+  <aside class="admin-sidebar">
+    <div class="sidebar-brand">
+      <h2>TOOBĀ</h2>
+      <span>Admin Suite • Jewellery Portal</span>
+    </div>
+
+    <nav class="sidebar-menu">
+      <div class="menu-label">Catalog & Operations</div>
+      <div class="menu-item active" data-tab="products">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <rect x="3" y="3" width="7" height="7"></rect>
+          <rect x="14" y="3" width="7" height="7"></rect>
+          <rect x="14" y="14" width="7" height="7"></rect>
+          <rect x="3" y="14" width="7" height="7"></rect>
+        </svg>
+        <span>Inventory Catalog</span>
+      </div>
+
+      <div class="menu-item" data-tab="add-product">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="12" y1="8" x2="12" y2="16"></line>
+          <line x1="8" y1="12" x2="16" y2="12"></line>
+        </svg>
+        <span>Add New Jewellery</span>
+      </div>
+
+      <div class="menu-item" data-tab="orders">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <path d="M16 10a4 4 0 0 1-8 0"></path>
+        </svg>
+        <span>Customer Orders</span>
+      </div>
+
+      <div class="menu-label" style="margin-top: 1.5rem;">Database Tools</div>
+      <div class="menu-item" id="btn-reset-demo" style="color: #F87171;">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M2.5 2v6h6M21.5 22v-6h-6"></path>
+          <path d="M22 11.5A10 10 0 0 0 3.2 7.2L2.5 8M2 12.5a10 10 0 0 0 18.8 4.3l.7-.8"></path>
+        </svg>
+        <span>Reset Demo Catalog</span>
+      </div>
+    </nav>
+
+    <div class="sidebar-bottom">
+      <a href="index.html" class="back-to-store-btn" target="_blank">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+          <polyline points="15 3 21 3 21 9"></polyline>
+          <line x1="10" y1="14" x2="21" y2="3"></line>
+        </svg>
+        <span>View Live Store</span>
+      </a>
+    </div>
+  </aside>
+
+  <!-- Admin Main Layout -->
+  <main class="admin-main">
+    <!-- Header -->
+    <header class="admin-header">
+      <div>
+        <h2 style="font-size: 1.3rem; font-weight: 700;">Tooba Jewellers Management Console</h2>
+        <span style="font-size: 0.8rem; color: var(--admin-text-muted);">Real-time inventory and customer order tracking</span>
+      </div>
+
+      <div class="header-user-badge">
+        <a href="index.html" style="font-size: 0.84rem; font-weight: 600; color: var(--admin-primary); margin-right: 1rem; text-decoration: none;">
+          ← Return to Storefront
+        </a>
+        <div class="admin-avatar">TJ</div>
+        <div>
+          <div style="font-size: 0.84rem; font-weight: 600;">Tooba Admin</div>
+          <div style="font-size: 0.72rem; color: var(--admin-text-muted);">Master Store Manager</div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Content Area -->
+    <div class="admin-content">
+
+      <!-- Metrics Top Cards -->
+      <section class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-card-info">
+            <h4>Total Revenue</h4>
+            <div class="stat-value" id="metric-revenue" style="color: var(--admin-primary);">₹0</div>
+          </div>
+          <div class="stat-card-icon gold">💰</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-card-info">
+            <h4>Active Catalog Pieces</h4>
+            <div class="stat-value" id="metric-products">0</div>
+          </div>
+          <div class="stat-card-icon blue">💎</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-card-info">
+            <h4>Orders Received</h4>
+            <div class="stat-value" id="metric-orders">0</div>
+          </div>
+          <div class="stat-card-icon green">📦</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-card-info">
+            <h4>Low Stock Alerts</h4>
+            <div class="stat-value" id="metric-low-stock" style="color: #D97706;">0</div>
+          </div>
+          <div class="stat-card-icon purple">⚠️</div>
+        </div>
+      </section>
+
+      <!-- TAB 1: INVENTORY CATALOG -->
+      <section class="tab-content active" id="tab-products">
+        <div class="admin-card">
+          <div class="card-title-bar">
+            <div>
+              <h3>Jewellery Inventory & Stock Control</h3>
+              <p style="font-size: 0.82rem; color: var(--admin-text-muted);">Manage real-time prices, hallmarking specs, and delete or update items.</p>
+            </div>
+            <div>
+              <input type="text" id="admin-search-products" placeholder="Search product by title, category, metal..." style="padding: 0.55rem 1rem; border: 1px solid var(--admin-border); border-radius: 20px; font-size: 0.85rem; width: 280px;" />
+            </div>
+          </div>
+
+          <div class="data-table-container">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Preview</th>
+                  <th>Product Details</th>
+                  <th>Category</th>
+                  <th>Price (₹)</th>
+                  <th>Stock Status</th>
+                  <th>Highlight Tag</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="products-table-body">
+                <!-- Dynamically populated by admin.js -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 2: ADD NEW PRODUCT -->
+      <section class="tab-content" id="tab-add-product">
+        <div class="form-preview-grid">
+          <!-- Form Left Column -->
+          <div class="admin-card">
+            <div class="card-title-bar">
+              <div>
+                <h3>Add New Jewellery Item</h3>
+                <p style="font-size: 0.82rem; color: var(--admin-text-muted);">List new diamond rings, necklaces, or bangles with live storefront synchronization.</p>
+              </div>
+            </div>
+
+            <form id="add-product-form">
+              <div class="form-field">
+                <label>Jewellery Title *</label>
+                <input type="text" id="form-title" required placeholder="e.g. Royal Pear Cut Solitaire Ring" />
+              </div>
+
+              <div class="form-group-grid">
+                <div class="form-field">
+                  <label>Category *</label>
+                  <select id="form-category" required>
+                    <option value="Rings">Rings</option>
+                    <option value="Necklaces">Necklaces & Chokers</option>
+                    <option value="Earrings">Earrings & Studs</option>
+                    <option value="Bracelets">Bracelets & Bangles</option>
+                    <option value="Mangalsutra">Modern Mangalsutra</option>
+                  </select>
+                </div>
+
+                <div class="form-field">
+                  <label>Metal Purity & Gold Type *</label>
+                  <select id="form-metal" required>
+                    <option value="18K Rose Gold">18K Rose Gold</option>
+                    <option value="18K Yellow Gold">18K Yellow Gold</option>
+                    <option value="18K White Gold">18K White Gold</option>
+                    <option value="22K Yellow Gold">22K Yellow Gold (BIS 916)</option>
+                    <option value="Platinum 950">Platinum 950</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group-grid">
+                <div class="form-field">
+                  <label>Selling Price (₹ INR) *</label>
+                  <input type="number" id="form-price" required placeholder="e.g. 48500" />
+                </div>
+
+                <div class="form-field">
+                  <label>Original MRP (₹ INR - for discount)</label>
+                  <input type="number" id="form-mrp" placeholder="e.g. 56000" />
+                </div>
+              </div>
+
+              <div class="form-group-grid">
+                <div class="form-field">
+                  <label>Diamond Carat Weight</label>
+                  <input type="text" id="form-carat" placeholder="e.g. 0.85 Ct" />
+                </div>
+
+                <div class="form-field">
+                  <label>Diamond Clarity & Color</label>
+                  <input type="text" id="form-clarity" placeholder="e.g. VVS-VS / EF Color" />
+                </div>
+              </div>
+
+              <div class="form-group-grid">
+                <div class="form-field">
+                  <label>Stock Quantity *</label>
+                  <input type="number" id="form-stock" required value="10" min="0" />
+                </div>
+
+                <div class="form-field">
+                  <label>Marketing Tag</label>
+                  <select id="form-tag">
+                    <option value="New Arrival">New Arrival</option>
+                    <option value="Bestseller">Bestseller</option>
+                    <option value="Trending">Trending</option>
+                    <option value="Bridal Pick">Bridal Pick</option>
+                    <option value="Limited Edition">Limited Edition</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Product Image Input (File Upload OR URL) -->
+              <div class="form-field">
+                <label>Jewellery Image * (Upload from PC or enter Web Image URL)</label>
+                <div class="image-upload-dropzone">
+                  <input type="file" id="form-image-file" accept="image/*" />
+                  <div style="font-size: 1.6rem; margin-bottom: 0.3rem;">📸</div>
+                  <strong style="font-size: 0.85rem; color: var(--admin-primary);">Click here to select an image from your computer</strong>
+                  <div style="font-size: 0.75rem; color: var(--admin-text-muted); margin-top: 0.2rem;">Supports JPG, PNG, WEBP with automatic instant preview</div>
+                </div>
+                <div style="margin-top: 0.6rem;">
+                  <span style="font-size: 0.78rem; color: var(--admin-text-muted);">Or enter Image URL:</span>
+                  <input type="url" id="form-image-url" placeholder="https://images.unsplash.com/..." style="width: 100%; margin-top: 0.25rem;" />
+                </div>
+              </div>
+
+              <div class="form-field">
+                <label>Craftsmanship & Description</label>
+                <textarea id="form-description" rows="3" placeholder="Describe the design, prong setting, and hallmark authenticity..."></textarea>
+              </div>
+
+              <div style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                <input type="checkbox" id="form-featured" checked style="width: 18px; height: 18px;" />
+                <label for="form-featured" style="font-size: 0.85rem; font-weight: 600; cursor: pointer;">Showcase in Featured / Home Highlights</label>
+              </div>
+
+              <button type="submit" class="btn-admin-submit" style="width: 100%;">
+                Publish Piece to Storefront ✨
+              </button>
+            </form>
+          </div>
+
+          <!-- Live Store Card Preview Right Column -->
+          <div class="preview-sticky-wrap">
+            <div class="admin-card" style="border: 2px solid var(--admin-primary);">
+              <span class="preview-tag">Live Customer Card Preview</span>
+              <p style="font-size: 0.78rem; color: var(--admin-text-muted); margin-bottom: 1rem;">
+                This is exactly how this piece will appear to customers on the Tooba Jewellers website.
+              </p>
+
+              <!-- Live Card Mimic -->
+              <div style="background: #FFFFFF; border-radius: 12px; border: 1px solid #E2E8F0; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.08);">
+                <div style="position: relative; aspect-ratio: 1/1; background: #F8FAFC;">
+                  <span id="preview-card-tag" style="position: absolute; top: 10px; left: 10px; background: #1B1514; color: #F8E5BA; font-size: 0.68rem; font-weight: 700; padding: 0.2rem 0.6rem; border-radius: 20px;">
+                    New Arrival
+                  </span>
+                  <img id="preview-card-img" src="assets/images/solitaire-ring.jpg" alt="Preview" style="width: 100%; height: 100%; object-fit: cover;" />
+                </div>
+                <div style="padding: 1.25rem;">
+                  <div id="preview-card-metal" style="font-size: 0.72rem; text-transform: uppercase; color: #9D623F; font-weight: 700; margin-bottom: 0.3rem;">
+                    18K Rose Gold • 0.75 Ct
+                  </div>
+                  <h4 id="preview-card-title" style="font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; margin-bottom: 0.5rem; line-height: 1.2;">
+                    Sample Solitaire Ring
+                  </h4>
+                  <div style="display: flex; align-items: baseline; gap: 0.6rem; margin-bottom: 0.8rem;">
+                    <span id="preview-card-price" style="font-size: 1.25rem; font-weight: 700; color: #1E293B;">₹45,000</span>
+                    <span id="preview-card-mrp" style="font-size: 0.85rem; text-decoration: line-through; color: #94A3B8;"></span>
+                  </div>
+                  <button type="button" style="width: 100%; padding: 0.65rem; background: #FAF7F5; border: 1px solid #E2E8F0; border-radius: 6px; font-weight: 600; font-size: 0.82rem; color: #1E293B;">
+                    Add To Cart
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 3: CUSTOMER ORDERS -->
+      <section class="tab-content" id="tab-orders">
+        <div class="admin-card">
+          <div class="card-title-bar">
+            <div>
+              <h3>Customer Orders & Transit Tracking</h3>
+              <p style="font-size: 0.82rem; color: var(--admin-text-muted);">Review customer delivery details, total order values, and update shipping stages.</p>
+            </div>
+          </div>
+
+          <div class="data-table-container">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Order ID</th>
+                  <th>Customer Info</th>
+                  <th>Jewellery Items</th>
+                  <th>Total Amount</th>
+                  <th>Order Date</th>
+                  <th>Update Status</th>
+                  <th>Current State</th>
+                </tr>
+              </thead>
+              <tbody id="orders-table-body">
+                <!-- Dynamically populated by admin.js -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <script src="js/products-data.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
